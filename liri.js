@@ -71,8 +71,12 @@ function getSong(){
     var song = input;
 
     spotify.search( {type: "track", query: song}, function(error, response){
+        
         if (error){
-            return console.log(error);
+            console.log(error);
+        }
+        else {
+            console.log("laskdjlkasjglkj")
         }
 
         console.log(JSON.stringify(response));
@@ -84,6 +88,29 @@ function getSong(){
 
 
     
+}
+
+function doCommand(){
+    fs.readFile("random.txt", "utf8", function(err, response){
+        response = response.split(",");
+        var database = response[0]
+        var input = response[1]
+
+        switch(database){
+            case "concert-this":
+                getBands(input)
+                break;
+            case "movie-this":
+                getMovie(input)
+                break;
+            case "spotify-this-song":
+                getSong(iput)
+                break;
+            default:
+                break;
+        }
+    })
+
 }
 
 
